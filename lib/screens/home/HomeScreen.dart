@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
         text: "Perfil",
         url:
             "https://img.freepik.com/free-vector/vector-illustration-flower-colorful_341269-1462.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726704000&semt=ais_hybrid",
-        route: '/home'),
+        route: '/profile'),
     Assigment(
         text: "Compras",
         url:
@@ -20,7 +20,8 @@ class HomeScreen extends StatelessWidget {
         route: '/register'),
     Assigment(
         text: "Reportes",
-        url: "https://i.pinimg.com/736x/d8/6d/4c/d86d4c84cf5b0a44d48223f9b32fb45e.jpg",
+        url:
+            "https://i.pinimg.com/736x/d8/6d/4c/d86d4c84cf5b0a44d48223f9b32fb45e.jpg",
         route: '/home'),
     Assigment(
         text: "Inventario",
@@ -48,6 +49,33 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         title: const Text("Eduardo Jose Lau Chavez"),
+        actions: <Widget>[
+          MenuBar(
+            children: <Widget>[
+              SubmenuButton(
+                menuChildren: <Widget>[
+                  MenuItemButton(
+                    onPressed: () {
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   const SnackBar(content: Text('Profile selected')),
+                      // );
+                    },
+                    child: const Text('Profile'),
+                  ),
+                  MenuItemButton(
+                    onPressed: () {
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   const SnackBar(content: Text('Home selected')),
+                      // );
+                    },
+                    child: const Text('Home'),
+                  ),
+                ],
+                child: const Text('Items'),
+              ),
+            ],
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -77,7 +105,8 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (message.url != null) // Si la URL no es nula, mostrar imagen
+                    if (message.url !=
+                        null) // Si la URL no es nula, mostrar imagen
                       Image.network(
                         message.url!,
                         height: 100,

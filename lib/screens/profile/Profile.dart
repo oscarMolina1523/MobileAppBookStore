@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 85.0,
                     backgroundImage: NetworkImage(
-                        'https://sun9-77.userapi.com/s/v1/ig2/AydvCc2uJ-ok9i9G--1DwSyTRn9jywSOTsEaTrTy3eRPiBo6-lCjx9b0pRII7p8vjTlAIUQXL3aU77EZgu9CrkPP.jpg?quality=96&as=32x57,48x85,72x128,108x192,160x284,240x426,360x640,480x853,540x959,640x1137,720x1279,900x1599&from=bu&u=ZNuATksXm4fPQjYWrUKmPRG7gk69ta_wKlBi9JJhodo&cs=340x604'),
+                        'https://moure.dev/avatar.jpg'),
                   ),
                 ],
               ),
