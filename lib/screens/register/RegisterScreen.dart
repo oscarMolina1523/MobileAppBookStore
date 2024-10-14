@@ -66,12 +66,22 @@ class RegisterScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed('/home');
                       },
                   ),
+                  // const SizedBox(height: 20),
+                  // Container(
+                  //   alignment: Alignment.centerRight,
+                  //   child: const Text(
+                  //     "Forgot your password?",
+                  //     style: TextStyle(color: Colors.red),
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
                   Container(
-                    alignment: Alignment.centerRight,
-                    child: const Text(
-                      "Forgot your password?",
-                      style: TextStyle(color: Colors.red),
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: (){
+                        Navigator.pushNamed(context, '/');
+                      },
+                      child: const Text("Do you have an account?",style: TextStyle(color: Colors.red),)
                     ),
                   ),
                 ],

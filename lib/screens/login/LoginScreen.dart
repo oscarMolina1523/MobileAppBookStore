@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Register",
+                    "Login",
                     style: TextStyle(fontSize: 50, color: Colors.green[900]),
                   ),
                   const SizedBox(height: 20),
@@ -55,6 +55,16 @@ class LoginScreen extends StatelessWidget {
                     child: const Text(
                       "Forgot your password?",
                       style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: (){
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: const Text("Do you need register?",style: TextStyle(color: Colors.red),)
                     ),
                   ),
                 ],

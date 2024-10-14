@@ -9,15 +9,10 @@ class HomeScreen extends StatelessWidget {
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNAfIjpMrVLM1pOOPw4caXaV_GdxZooxep1w&s",
         route: '/catalogos'),
     Assigment(
-        text: "Perfil",
-        url:
-            "https://img.freepik.com/free-vector/vector-illustration-flower-colorful_341269-1462.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726704000&semt=ais_hybrid",
-        route: '/profile'),
-    Assigment(
-        text: "Compras",
+        text: "Productos",
         url:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrKjNCAtC4DkIrwkYzrUenFFBNtF0ym874w&s",
-        route: '/register'),
+        route: '/productos'),
     Assigment(
         text: "Reportes",
         url:
@@ -41,39 +36,59 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.all(4.0),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32r0pwl79OIe7C4qV3zuByHE5sevX_AcY8g&s'),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/profile');
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(4.0),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32r0pwl79OIe7C4qV3zuByHE5sevX_AcY8g&s'),
+            ),
           ),
         ),
-        title: const Text("Eduardo Jose Lau Chavez"),
-        actions: <Widget>[
-          MenuBar(
-            children: <Widget>[
-              SubmenuButton(
-                menuChildren: <Widget>[
-                  MenuItemButton(
-                    onPressed: () {
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //   const SnackBar(content: Text('Profile selected')),
-                      // );
-                    },
-                    child: const Text('Profile'),
+        title: const Text("Eduardo Lau"),
+        actions:[
+          TextButton(
+            onPressed: () {
+              showMenu(
+                context: context,
+                position: RelativeRect.fromLTRB(100, 80, 0, 0), // Posición del menú
+                items: [
+                  PopupMenuItem(
+                    value: '/profile',
+                    child: Text('Profile'),
                   ),
-                  MenuItemButton(
-                    onPressed: () {
-                      // ScaffoldMessenger.of(context).showSnackBar(
-                      //   const SnackBar(content: Text('Home selected')),
-                      // );
-                    },
-                    child: const Text('Home'),
+                  PopupMenuItem(
+                    value: '/home',
+                    child: Text('Home'),
+                  ),
+                  PopupMenuItem(
+                    value: '/catalogos',
+                    child: Text('Catalogos'),
+                  ),
+                  PopupMenuItem(
+                    value: '/productos',
+                    child: Text('Productos'),
+                  ),
+                  PopupMenuItem(
+                    value: '/cart',
+                    child: Text('My Cart'),
+                  ),
+                  PopupMenuItem(
+                    value: '/',
+                    child: Text('Cerrar Sesion'),
                   ),
                 ],
-                child: const Text('Items'),
-              ),
-            ],
+              ).then((value) {
+                // Acción cuando se selecciona una opción del menú
+                if (value != null) {
+                 Navigator.pushNamed(context, value);
+                }
+              });
+            },
+            child: const Text("Options")
           ),
         ],
       ),
