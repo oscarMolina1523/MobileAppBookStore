@@ -6,6 +6,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title:const Text("My profile"),
@@ -76,7 +78,8 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 20,),
             SizedBox(
               width: 300,
-              child: ButtonWidget(),
+              child: ButtonWidget(emailController: _emailController,
+                    passwordController: _passwordController,),
             ),
           ],
         ),

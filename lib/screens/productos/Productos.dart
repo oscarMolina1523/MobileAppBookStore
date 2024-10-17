@@ -7,16 +7,37 @@ class ProductosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Productos> productos=[
-      Productos(descripcion: "Libros", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbcYFSdlG_heT0EDW99OlxKAoeEBA1-GwLrw&s"),
-      Productos(descripcion: "Hojas", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXXklj0fI-P46oJ99RSaLU1vQkGRfZXT5MIA&s"),
-      Productos(descripcion: "Cartulinas", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8NAtzVJBQtjqICEBIZNySlcLaOJYmRHYPfg&s"),
-      Productos(descripcion: "Lapiz", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj_G-Dw47zP5_ZxqomOa8Nj02UonYPukV9ZA&s"),
-      Productos(descripcion: "Lapiceros", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3p9cMbZskg8v07mXuFdYqirNj4UPBlLMkw&s"),
-      Productos(descripcion: "Colores", url: "https://www.materialescolar.es/blog/wp-content/uploads/2016/03/artistic-2063_960_720-e1457341711570.jpg"),
-      Productos(descripcion: "Borrador", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtHgFPd4fsNwt22rRWdlIYcnPjbT1acKfsUw&s"),
-      Productos(descripcion: "Pincel", url: "https://50568e3c.rocketcdn.me/wp-content/uploads/2022/06/000-PINCELES-ACUARELA-opt-768x512.jpg"),
-      Productos(descripcion: "Porta lapiz", url: "https://dixman.com.bo/cdn/shop/products/1454202892_1024x.jpg?v=1638321991"),
-    ];
+      Productos(
+        descripcion: "Libros",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbcYFSdlG_heT0EDW99OlxKAoeEBA1-GwLrw&s",
+        precio: 150),
+    Productos(
+        descripcion: "Hojas",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXXklj0fI-P46oJ99RSaLU1vQkGRfZXT5MIA&s",
+        precio: 2),
+    Productos(
+        descripcion: "Cartulinas",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8NAtzVJBQtjqICEBIZNySlcLaOJYmRHYPfg&s",
+        precio: 8),
+    Productos(
+        descripcion: "Lapiz",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj_G-Dw47zP5_ZxqomOa8Nj02UonYPukV9ZA&s",
+        precio: 12),
+    Productos(
+        descripcion: "Lapiceros",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3p9cMbZskg8v07mXuFdYqirNj4UPBlLMkw&s",
+        precio: 17),
+    Productos(
+        descripcion: "Colores",
+        url:
+            "https://www.materialescolar.es/blog/wp-content/uploads/2016/03/artistic-2063_960_720-e1457341711570.jpg",
+        precio: 25),
+  ];
 
     return Scaffold(
       appBar: AppBar(

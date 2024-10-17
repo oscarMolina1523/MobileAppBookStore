@@ -6,6 +6,8 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -44,7 +46,8 @@ class RegisterScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 50, color: Colors.green[900]),
                   ),
                   const SizedBox(height: 20),
-                  const InputWidget(),
+                  InputWidget(emailController: _emailController,
+                    passwordController: _passwordController,),
                   const SizedBox(height: 20),
                   TextField(
                     decoration: InputDecoration(

@@ -3,17 +3,38 @@ import 'package:bookstore_mobile_app/models/Productos.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<Productos> productos=[
-      Productos(descripcion: "Libros", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbcYFSdlG_heT0EDW99OlxKAoeEBA1-GwLrw&s"),
-      Productos(descripcion: "Hojas", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXXklj0fI-P46oJ99RSaLU1vQkGRfZXT5MIA&s"),
-      Productos(descripcion: "Cartulinas", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8NAtzVJBQtjqICEBIZNySlcLaOJYmRHYPfg&s"),
-      Productos(descripcion: "Lapiz", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj_G-Dw47zP5_ZxqomOa8Nj02UonYPukV9ZA&s"),
-      Productos(descripcion: "Lapiceros", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3p9cMbZskg8v07mXuFdYqirNj4UPBlLMkw&s"),
-      Productos(descripcion: "Colores", url: "https://www.materialescolar.es/blog/wp-content/uploads/2016/03/artistic-2063_960_720-e1457341711570.jpg"),
-      Productos(descripcion: "Borrador", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtHgFPd4fsNwt22rRWdlIYcnPjbT1acKfsUw&s"),
-      Productos(descripcion: "Pincel", url: "https://50568e3c.rocketcdn.me/wp-content/uploads/2022/06/000-PINCELES-ACUARELA-opt-768x512.jpg"),
-      Productos(descripcion: "Porta lapiz", url: "https://dixman.com.bo/cdn/shop/products/1454202892_1024x.jpg?v=1638321991"),
-    ];
+  final List<Productos> productos = [
+    Productos(
+        descripcion: "Libros",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbcYFSdlG_heT0EDW99OlxKAoeEBA1-GwLrw&s",
+        precio: 150),
+    Productos(
+        descripcion: "Hojas",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXXklj0fI-P46oJ99RSaLU1vQkGRfZXT5MIA&s",
+        precio: 2),
+    Productos(
+        descripcion: "Cartulinas",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8NAtzVJBQtjqICEBIZNySlcLaOJYmRHYPfg&s",
+        precio: 8),
+    Productos(
+        descripcion: "Lapiz",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj_G-Dw47zP5_ZxqomOa8Nj02UonYPukV9ZA&s",
+        precio: 12),
+    Productos(
+        descripcion: "Lapiceros",
+        url:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3p9cMbZskg8v07mXuFdYqirNj4UPBlLMkw&s",
+        precio: 17),
+    Productos(
+        descripcion: "Colores",
+        url:
+            "https://www.materialescolar.es/blog/wp-content/uploads/2016/03/artistic-2063_960_720-e1457341711570.jpg",
+        precio: 25),
+  ];
   final List<Assigment> messages = [
     Assigment(
         text: "Administrar Catalogos",
@@ -61,35 +82,35 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         title: const Text("Eduardo Lau"),
-        actions:[
+        actions: [
           TextButton(
-            onPressed: () {
-              showMenu(
-                context: context,
-                position: RelativeRect.fromLTRB(100, 80, 0, 0), // Posición del menú
-                items: [
-                  PopupMenuItem(
-                    value: '/profile',
-                    child: Text('Profile'),
-                  ),
-                  PopupMenuItem(
-                    value: '/cart',
-                    child: Text('My Cart'),
-                  ),
-                  PopupMenuItem(
-                    value: '/',
-                    child: Text('Cerrar Sesion'),
-                  ),
-                ],
-              ).then((value) {
-                // Acción cuando se selecciona una opción del menú
-                if (value != null) {
-                 Navigator.pushNamed(context, value);
-                }
-              });
-            },
-            child: const Text("Options")
-          ),
+              onPressed: () {
+                showMenu(
+                  context: context,
+                  position:
+                      RelativeRect.fromLTRB(100, 80, 0, 0), // Posición del menú
+                  items: [
+                    PopupMenuItem(
+                      value: '/profile',
+                      child: Text('Profile'),
+                    ),
+                    PopupMenuItem(
+                      value: '/cart',
+                      child: Text('My Cart'),
+                    ),
+                    PopupMenuItem(
+                      value: '/',
+                      child: Text('Cerrar Sesion'),
+                    ),
+                  ],
+                ).then((value) {
+                  // Acción cuando se selecciona una opción del menú
+                  if (value != null) {
+                    Navigator.pushNamed(context, value);
+                  }
+                });
+              },
+              child: const Text("Options")),
         ],
       ),
       body: Padding(
@@ -99,7 +120,8 @@ class HomeScreen extends StatelessWidget {
           crossAxisSpacing: 10, // Espacio entre columnas
           mainAxisSpacing: 10, // Espacio entre filas
           children: List.generate(productos.length, (index) {
-            final message = productos[index]; // Obtenemos el mensaje de la lista
+            final message =
+                productos[index]; // Obtenemos el mensaje de la lista
 
             return GestureDetector(
               child: Container(
@@ -117,7 +139,8 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (message.url != null) // Si la URL no es nula, mostrar imagen
+                    if (message.url !=
+                        null) // Si la URL no es nula, mostrar imagen
                       Image.network(
                         message.url!,
                         height: 100,
@@ -125,10 +148,21 @@ class HomeScreen extends StatelessWidget {
                       ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        message.descripcion, // Mostramos el texto del mensaje
-                        style: const TextStyle(fontSize: 16),
-                        textAlign: TextAlign.center,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            message.descripcion,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(
+                              height: 5), // Espacio entre descripción y precio
+                          Text(
+                            'Precio: \$${message.precio.toStringAsFixed(2)}',
+                            style: const TextStyle(
+                                fontSize: 14, color: Colors.grey),
+                          ),
+                        ],
                       ),
                     ),
                   ],

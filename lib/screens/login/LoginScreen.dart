@@ -7,6 +7,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -15,7 +18,8 @@ class LoginScreen extends StatelessWidget {
             Container(
               color: Colors.green[900],
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.4, // Toma el 40% de la pantalla
+              height: MediaQuery.of(context).size.height *
+                  0.4, // Toma el 40% de la pantalla
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -45,10 +49,16 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 50, color: Colors.green[900]),
                   ),
                   const SizedBox(height: 20),
-                  const InputWidget(),
+                  InputWidget(
+                    emailController: _emailController,
+                    passwordController: _passwordController,
+                  ),
                   const SizedBox(height: 20),
                   const SizedBox(height: 20),
-                  ButtonWidget(),
+                  ButtonWidget(
+                    emailController: _emailController,
+                    passwordController: _passwordController,
+                  ),
                   const SizedBox(height: 20),
                   Container(
                     alignment: Alignment.centerRight,
@@ -61,11 +71,13 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     alignment: Alignment.center,
                     child: TextButton(
-                      onPressed: (){
-                        Navigator.pushNamed(context, '/register');
-                      },
-                      child: const Text("Do you need register?",style: TextStyle(color: Colors.red),)
-                    ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
+                        child: const Text(
+                          "Do you need register?",
+                          style: TextStyle(color: Colors.red),
+                        )),
                   ),
                 ],
               ),
