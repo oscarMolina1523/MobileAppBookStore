@@ -4,10 +4,17 @@ import 'package:bookstore_mobile_app/screens/home/HomeScreen.dart';
 import 'package:bookstore_mobile_app/screens/login/LoginScreen.dart';
 import 'package:bookstore_mobile_app/screens/profile/Profile.dart';
 import 'package:bookstore_mobile_app/screens/register/RegisterScreen.dart';
+import 'package:bookstore_mobile_app/services/authServices.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AuthService(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

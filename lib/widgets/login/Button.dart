@@ -1,4 +1,6 @@
+import 'package:bookstore_mobile_app/services/authServices.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ButtonWidget extends StatelessWidget {
   final TextEditingController emailController;
@@ -12,18 +14,29 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String validEmail = 'jorge@gmail.com';
-    final String validPassword = '123456';
-
-    void _validateCredentials() {
+    void _validateCredentials() async {
       final String email = emailController.text;
       final String password = passwordController.text;
 
-      if (email == validEmail && password == validPassword) {
+      if (email.isEmpty || password.isEmpty) {
+        // Mostrar un mensaje de error si los campos están vacíos
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Por favor, completa todos los campos')),
+        );
+        return;
+      }
+
+      final authService = Provider.of<AuthService>(context, listen: false);
+      String? result = await authService.login(email, password);
+
+      if (result == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Inicio de sesión exitoso')),
+        );
         Navigator.pushNamed(context, '/home');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Error: Invalid email or password')),
+          SnackBar(content: Text(result)),
         );
       }
     }
