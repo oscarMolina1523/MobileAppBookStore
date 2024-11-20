@@ -1,5 +1,7 @@
 import 'package:bookstore_mobile_app/models/Productos.dart';
 import 'package:bookstore_mobile_app/screens/Cart/Cart.dart';
+import 'package:bookstore_mobile_app/screens/CheckoutScreen.dart';
+import 'package:bookstore_mobile_app/screens/OrderHistoryScreen.dart';
 import 'package:bookstore_mobile_app/screens/ProductoDetailsScreen.dart';
 import 'package:bookstore_mobile_app/screens/administradorCatalogos/AdministradorCatalogos.dart';
 import 'package:bookstore_mobile_app/screens/home/HomeScreen.dart';
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
         '/profile': (context)=>ProfileScreen(),
         '/catalogos': (context)=>AdministradorCatalogosScreen(),
         '/cart': (context)=>CartScreen(),
+        '/checkout': (context)=>CheckoutScreen(),
+        '/history': (context)=>OrderHistoryScreen(),
         '/productoDetails': (context) => ProductoDetailsScreen(producto: ModalRoute.of(context)!.settings.arguments as Productos),
       },
       initialRoute: '/',

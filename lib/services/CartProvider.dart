@@ -2,10 +2,11 @@ import 'package:bookstore_mobile_app/models/Productos.dart';
 import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {
-  // Usamos un Map para almacenar el producto y su cantidad
   Map<Productos, int> _cartItems = {};
+  List<Order> _orders = []; // Lista para almacenar los pedidos
 
   Map<Productos, int> get cartItems => _cartItems;
+  List<Order> get orders => _orders;
 
   void addProduct(Productos producto) {
     if (_cartItems.containsKey(producto)) {
@@ -34,4 +35,30 @@ class CartProvider with ChangeNotifier {
     });
     return total;
   }
+
+  void confirmOrder(String name, String address, String cardNumber, String cvv) {
+    // Crear un nuevo pedido
+    final order = Order(
+      products: _cartItems,
+      totalAmount: totalAmount,
+      date: DateTime.now(),
+    );
+
+    // Agregar el pedido a la lista de pedidos
+    _orders.add(order);
+
+    // Limpiar el carrito
+    _cartItems.clear();
+
+    notifyListeners();
+  }
+}
+
+// Clase para representar un pedido
+class Order {
+  final Map<Productos, int> products;
+  final double totalAmount;
+  final DateTime date;
+
+  Order({required this.products, required this.totalAmount, required this.date});
 }

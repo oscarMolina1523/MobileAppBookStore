@@ -1,3 +1,4 @@
+import 'package:bookstore_mobile_app/screens/CheckoutScreen.dart';
 import 'package:bookstore_mobile_app/services/CartProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -113,6 +114,16 @@ class CartScreen extends StatelessWidget {
                 Text(
                   'Total: \$${cartProvider.totalAmount.toStringAsFixed(2)}',
                   style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navegar a la pantalla de checkout
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => CheckoutScreen()),
+                    );
+                  },
+                  child: const Text('Confirmar'),
                 ),
               ],
             ),

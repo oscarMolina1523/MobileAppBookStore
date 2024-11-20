@@ -72,6 +72,10 @@ class HomeScreen extends StatelessWidget {
                       child: Text('My Cart'),
                     ),
                     PopupMenuItem(
+                      value: '/history',
+                      child: Text('Historial'),
+                    ),
+                    PopupMenuItem(
                       value: '/',
                       child: Text('Cerrar Sesion'),
                     ),
