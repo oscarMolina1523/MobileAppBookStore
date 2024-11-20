@@ -35,6 +35,7 @@ class _InputWidgetState extends State<InputWidget> {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
             labelText: 'Enter your password...',
           ),
+          obscureText: true,
         ),
         const SizedBox(height: 20),
         TextField(
@@ -43,6 +44,7 @@ class _InputWidgetState extends State<InputWidget> {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
             labelText: 'Confirm your password...',
           ),
+          obscureText: true,
         ),
       ],
     );

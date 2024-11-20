@@ -33,6 +33,7 @@ class _InputWidgetState extends State<InputWidget> {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
             labelText: 'Enter your password...',
           ),
+          obscureText: true,
         ),
       ],
     );
