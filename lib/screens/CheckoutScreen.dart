@@ -85,6 +85,17 @@ class CheckoutScreen extends StatelessWidget {
                   ),
                 );
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Colors.green), // Color de fondo verde
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    Colors.white), // Color del texto blanco
+                textStyle: MaterialStateProperty.all<TextStyle>(
+                  TextStyle(
+                    fontWeight: FontWeight.bold, // Texto en negrita
+                  ),
+                ),
+              ),
               child: const Text('Confirmar Pedido'),
             ),
           ],

@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
             padding: EdgeInsets.all(4.0),
             child: CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32r0pwl79OIe7C4qV3zuByHE5sevX_AcY8g&s'),
+                  'https://moure.dev/avatar.jpg'),
             ),
           ),
         ),
@@ -95,11 +95,11 @@ class HomeScreen extends StatelessWidget {
                   items: [
                     PopupMenuItem(
                       value: '/profile',
-                      child: Text('Profile'),
+                      child: Text('Mi Perfil'),
                     ),
                     PopupMenuItem(
                       value: '/cart',
-                      child: Text('My Cart'),
+                      child: Text('Mi carrito'),
                     ),
                     PopupMenuItem(
                       value: '/history',
@@ -116,80 +116,83 @@ class HomeScreen extends StatelessWidget {
                   }
                 });
               },
-              child: const Text("Options")),
+              child: const Text("Opciones")),
         ],
       ),
-      body: FutureBuilder<List<Categoria>>(
-        future: apiService.fetchCategorias(), // Llamada a la API para obtener categorías
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center (child: Text('No hay categorías disponibles.'));
-          }
-
-          final categorias = snapshot.data!; // Obtener las categorías
-
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.count(
-              crossAxisCount: 2, // Número de columnas
-              crossAxisSpacing: 10, // Espacio entre columnas
-              mainAxisSpacing: 10, // Espacio entre filas
-              children: List.generate(categorias.length, (index) {
-                final categoria = categorias[index]; // Obtenemos la categoría de la lista
-
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductosPorCategoriaScreen(categoriaId: categoria.id), // Asegúrate de que el modelo tenga un campo `id`
-                      ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.3), // Sombra simple
-                          blurRadius: 5,
-                          offset: const Offset(0, 3), // Desplazamiento de la sombra
+      body: Container(
+        color: Colors.green,
+        child: FutureBuilder<List<Categoria>>(
+          future: apiService.fetchCategorias(), // Llamada a la API para obtener categorías
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center (child: Text('No hay categorías disponibles.'));
+            }
+        
+            final categorias = snapshot.data!; // Obtener las categorías
+        
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.count(
+                crossAxisCount: 2, // Número de columnas
+                crossAxisSpacing: 10, // Espacio entre columnas
+                mainAxisSpacing: 10, // Espacio entre filas
+                children: List.generate(categorias.length, (index) {
+                  final categoria = categorias[index]; // Obtenemos la categoría de la lista
+        
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductosPorCategoriaScreen(categoriaId: categoria.id), // Asegúrate de que el modelo tenga un campo `id`
                         ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.network(
-                          getImageForCategory(categoria.descripcion), // Obtener la imagen según la descripción
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                categoria.descripcion,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3), // Sombra simple
+                            blurRadius: 5,
+                            offset: const Offset(0, 3), // Desplazamiento de la sombra
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            getImageForCategory(categoria.descripcion), // Obtener la imagen según la descripción
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  categoria.descripcion,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }),
-            ),
-          );
-        },
+                  );
+                }),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
