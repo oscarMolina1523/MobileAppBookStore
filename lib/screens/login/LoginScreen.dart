@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Login",
+                    "Iniciar Sesion",
                     style: TextStyle(fontSize: 50, color: Colors.green[900]),
                   ),
                   const SizedBox(height: 20),
@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerRight,
                     child: const Text(
-                      "Forgot your password?",
+                      "Olvido su contraseña?",
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.pushNamed(context, '/register');
                         },
                         child: const Text(
-                          "Do you need register?",
+                          "Necesita registrarse?",
                           style: TextStyle(color: Colors.red),
                         )),
                   ),

@@ -25,7 +25,7 @@ class _InputWidgetState extends State<InputWidget> {
           controller: widget.emailController,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
-            labelText: 'Enter your email or username...',
+            labelText: 'Ingrese su email...',
           ),
         ),
         const SizedBox(height: 20),
@@ -33,7 +33,7 @@ class _InputWidgetState extends State<InputWidget> {
           controller: widget.passwordController,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
-            labelText: 'Enter your password...',
+            labelText: 'Ingrese su contraseña...',
           ),
           obscureText: true,
         ),
@@ -42,7 +42,7 @@ class _InputWidgetState extends State<InputWidget> {
           controller: widget.confirmPasswordController,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
-            labelText: 'Confirm your password...',
+            labelText: 'Confirme su contraseña...',
           ),
           obscureText: true,
         ),

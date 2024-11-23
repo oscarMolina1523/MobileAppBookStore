@@ -46,7 +46,7 @@ class RegisterScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Register",
+                    "Registrarse",
                     style: TextStyle(fontSize: 50, color: Colors.green[900]),
                   ),
                   const SizedBox(height: 20),

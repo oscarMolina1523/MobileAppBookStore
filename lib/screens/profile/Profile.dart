@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
     final TextEditingController _passwordController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title:const Text("My profile"),
+        title:const Text("Mi Perfil"),
         actions: [
           IconButton(
             onPressed:(){
@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  labelText: 'Enter your new email',
+                  labelText: 'Ingrese nuevo email',
                 ),
               ),
             ),
@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  labelText: 'Enter your new user name',
+                  labelText: 'Ingrese nuevo nombre de usuario',
                 ),
               ),
             ),
@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  labelText: 'Enter your new password',
+                  labelText: 'Ingrese nueva contraseña',
                 ),
               ),
             ),
