@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:bookstore_mobile_app/models/Productos.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Importar la librería http
 
 class CartProvider with ChangeNotifier {
   Map<Productos, int> _cartItems = {};
@@ -36,8 +38,8 @@ class CartProvider with ChangeNotifier {
     return total;
   }
 
-  void confirmOrder(
-      String name, String address, String cardNumber, String cvv) {
+  Future<void> confirmOrder(
+      String name, String address, String cardNumber, String cvv) async {
     // Crear un nuevo pedido
     final order = Order(
       products:
@@ -46,19 +48,54 @@ class CartProvider with ChangeNotifier {
       date: DateTime.now(),
     );
 
+    // Crear el cuerpo del JSON para la API
+    final List<Map<String, dynamic>> detalles =
+        order.products.entries.map((entry) {
+      final producto = entry.key;
+      final cantidad = entry.value;
+      return {
+        "NombreProducto": producto.descripcionProducto,
+        "Cantidad": cantidad,
+        "PrecioVenta": producto.obtenerPrecio(),
+      };
+    }).toList();
+
+    final body = jsonEncode({
+      "NombreCliente": name,
+      "NombreUsuario": "admin", 
+      "Total": order.totalAmount,
+      "Detalles": detalles,
+    });
+
+    // Realizar la solicitud POST a la API
+    final response = await http.post(
+      Uri.parse(
+          'https://libreriaestudianteapi-ccaxb4gkb5eghehn.canadacentral-01.azurewebsites.net/Venta/CrearVenta'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    );
+
     // Depuración: Imprimir los productos del pedido
     print("Productos en el pedido:");
     _cartItems.forEach((producto, cantidad) {
       print('${producto.descripcionProducto}: $cantidad');
     });
 
-    // Agregar el pedido a la lista de pedidos
-    _orders.add(order);
-
-    // Limpiar el carrito
-    _cartItems.clear();
-
-    notifyListeners();
+    if (response.statusCode == 200) {
+      // Si la solicitud fue exitosa, agregar el pedido a la lista de pedidos
+      _orders.add(order);
+      // Limpiar el carrito
+      _cartItems.clear();
+      notifyListeners();
+      print("Pedido enviado exitosamente.");
+    } else {
+      // Manejo de errores
+      print(
+          "Error al enviar el pedido: ${response.statusCode} - ${response.body}");
+      throw Exception('Error al enviar el pedido');
+    }
   }
 }
 
