@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:bookstore_mobile_app/models/Categorias.dart';
 import 'package:bookstore_mobile_app/models/Productos.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +24,21 @@ class ApiService {
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
       return data.map((json) => Productos.fromJson(json)).toList();
+    } else {
+      throw Exception('Error al cargar productos');
+    }
+  }
+
+  Future<List<Productos>> fetchProductosPorCategoria(String categoriaId) async {
+    final response = await http.get(Uri.parse('${baseUrl}Producto/Listar'));
+
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      // Filtrar los productos por la categoría
+      return jsonResponse
+          .map((producto) => Productos.fromJson(producto))
+          .where((producto) => producto.idCategoria == categoriaId)
+          .toList();
     } else {
       throw Exception('Error al cargar productos');
     }

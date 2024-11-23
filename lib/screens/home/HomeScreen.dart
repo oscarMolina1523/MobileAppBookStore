@@ -1,4 +1,5 @@
 import 'package:bookstore_mobile_app/models/Categorias.dart';
+import 'package:bookstore_mobile_app/screens/ProductosPorCategoriaScreen.dart';
 import 'package:bookstore_mobile_app/services/apiService.dart';
 import 'package:flutter/material.dart';
 
@@ -142,8 +143,12 @@ class HomeScreen extends StatelessWidget {
 
                 return GestureDetector(
                   onTap: () {
-                    // Navegar a la pantalla de detalles cuando se hace clic en una categoría
-                    // Aquí puedes implementar la navegación a la pantalla de detalles de la categoría
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductosPorCategoriaScreen(categoriaId: categoria.id), // Asegúrate de que el modelo tenga un campo `id`
+                      ),
+                    );
                   },
                   child: Container(
                     decoration: BoxDecoration(

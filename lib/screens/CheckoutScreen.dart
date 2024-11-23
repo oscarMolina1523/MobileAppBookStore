@@ -44,6 +44,18 @@ class CheckoutScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                // Validar campos
+                if (nameController.text.isEmpty ||
+                    addressController.text.isEmpty ||
+                    cardNumberController.text.isEmpty ||
+                    cvvController.text.isEmpty) {
+                  // Mostrar un mensaje de error si algún campo está vacío
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Por favor, complete todos los campos.')),
+                  );
+                  return; // Salir de la función si hay campos vacíos
+                }
+
                 final cartProvider = Provider.of<CartProvider>(context, listen: false);
                 cartProvider.confirmOrder(
                   nameController.text,
@@ -61,7 +73,7 @@ class CheckoutScreen extends StatelessWidget {
                     actions: [
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pop (); // Cerrar el diálogo
+                          Navigator.of(context).pop(); // Cerrar el diálogo
                           Navigator.of(context).pop(); // Regresar a la pantalla del carrito
                           Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) => OrderHistoryScreen()), // Navegar a la pantalla de historial de pedidos

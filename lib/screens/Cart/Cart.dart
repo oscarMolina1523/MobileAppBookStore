@@ -41,40 +41,45 @@ class CartScreen extends StatelessWidget {
                             ],
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               if (producto.url != null)
-                                Image.network(
-                                  producto.url!,
-                                  height: 80,
-                                  fit: BoxFit.cover,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.network(
+                                    producto.url!,
+                                    height: 80,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      producto.descripcion,
-                                      style: const TextStyle(fontSize: 16),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      'Precio: \$${producto.precio.toStringAsFixed(2)}',
-                                      style: const TextStyle(
-                                          fontSize: 14, color: Colors.grey),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      'Cantidad: $cantidad',
-                                      style: const TextStyle(
-                                          fontSize: 14, color: Colors.black),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
+                              Expanded( // Usa Expanded aquí
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        producto.descripcionProducto,
+                                        style: const TextStyle(fontSize: 16),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        'Precio: \$${producto.obtenerPrecio().toStringAsFixed(2)}',
+                                        style: const TextStyle(
+                                            fontSize: 14, color: Colors.grey),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        'Cantidad: $cantidad',
+                                        style: const TextStyle(
+                                            fontSize: 14, color: Colors.black),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               Column(
@@ -91,7 +96,7 @@ class CartScreen extends StatelessWidget {
                                       cartProvider.removeProduct(producto); // Disminuir cantidad
                                       ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(
-                                          content: Text('${producto.descripcion} cantidad disminuida'),
+                                          content: Text('${producto.descripcionProducto} cantidad disminuida'),
                                         ),
                                       );
                                     },

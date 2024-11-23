@@ -4,42 +4,43 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductoDetailsScreen extends StatelessWidget {
-  final Productos producto;
+  final Productos producto; final double precio; // Precio recibido
 
-  // Constructor para recibir el producto
-  const ProductoDetailsScreen({super.key, required this.producto});
+  // Constructor para recibir el producto y el precio
+  const ProductoDetailsScreen({super.key, required this.producto, required this.precio});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(producto.descripcion),
+        title: Text(producto.descripcionProducto),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Verificar si la URL es válida
-            producto.url != null
-                ? Image.network(
-                    producto.url!,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  )
-                : Container(
-                    height: 200,
-                    color: Colors.grey[300],
-                    child: const Center(child: Text('Imagen no disponible')),
-                  ),
+             Center(
+              child: producto.url != null
+                  ? Image.network(
+                      producto.url!,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(
+                      height: 200,
+                      color: Colors.grey[300],
+                      child: const Center(child: Text('Imagen no disponible')),
+                    ),
+            ),
             const SizedBox(height: 16),
             Text(
-              'Descripción: ${producto.descripcion}',
+              'Descripción: ${producto.descripcionProducto}',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
-              'Precio: \$${producto.precio.toStringAsFixed(2)}',
+              'Precio: \$${precio.toStringAsFixed(2)}', // Mostrar el precio dinámico
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 16),
@@ -50,7 +51,7 @@ class ProductoDetailsScreen extends StatelessWidget {
                 cartProvider.addProduct(producto);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('${producto.descripcion} agregado al carrito'),
+                    content: Text('${producto.descripcionProducto} agregado al carrito'),
                   ),
                 );
               },

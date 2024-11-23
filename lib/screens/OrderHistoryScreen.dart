@@ -39,11 +39,11 @@ class OrderHistoryScreen extends StatelessWidget {
                         ...order.products.entries.map((entry) {
                           final producto = entry.key;
                           final cantidad = entry.value;
-                          final totalProducto = producto.precio * cantidad;
+                          final totalProducto = producto.obtenerPrecio() * cantidad;
                           return Text(
-                            '${producto.descripcion} - '
+                            '${producto.descripcionProducto} - '
                             'Cantidad: $cantidad - '
-                            'Precio: \$${producto.precio.toStringAsFixed(2)} - '
+                            'Precio: \$${producto.obtenerPrecio().toStringAsFixed(2)} - '
                             'Subtotal: \$${totalProducto.toStringAsFixed(2)}',
                           );
                         }).toList(),

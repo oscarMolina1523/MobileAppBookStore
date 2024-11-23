@@ -31,18 +31,26 @@ class CartProvider with ChangeNotifier {
   double get totalAmount {
     double total = 0.0;
     _cartItems.forEach((producto, cantidad) {
-      total += producto.precio * cantidad; // Calcular total
+      total += producto.obtenerPrecio() * cantidad; // Calcular total
     });
     return total;
   }
 
-  void confirmOrder(String name, String address, String cardNumber, String cvv) {
+  void confirmOrder(
+      String name, String address, String cardNumber, String cvv) {
     // Crear un nuevo pedido
     final order = Order(
-      products: _cartItems,
+      products:
+          Map.from(_cartItems), // Crear una copia de _cartItems para el pedido
       totalAmount: totalAmount,
       date: DateTime.now(),
     );
+
+    // Depuración: Imprimir los productos del pedido
+    print("Productos en el pedido:");
+    _cartItems.forEach((producto, cantidad) {
+      print('${producto.descripcionProducto}: $cantidad');
+    });
 
     // Agregar el pedido a la lista de pedidos
     _orders.add(order);
@@ -60,5 +68,6 @@ class Order {
   final double totalAmount;
   final DateTime date;
 
-  Order({required this.products, required this.totalAmount, required this.date});
+  Order(
+      {required this.products, required this.totalAmount, required this.date});
 }
