@@ -3,11 +3,12 @@ class Productos {
   final String idCategoria;
   final String id;
   final String? url;
+  final String? detalles;
 
   Productos(
       {required this.descripcionProducto,
       required this.idCategoria,
-      required this.id,}): url = imagenesProductos[id];
+      required this.id,}): url = imagenesProductos[id], detalles=descripcionesLargas[id];
 
   factory Productos.fromJson(Map<String, dynamic> json) {
     return Productos(
@@ -16,6 +17,56 @@ class Productos {
       id: json['Id'] as String,
     );
   }
+
+  // Mapa de IDs de productos a sus respectivas descripciones largas
+static final Map<String, String> descripcionesLargas = {
+  "fed10621-ce6c-4947-bd5b-0aabf7520ddf": "Este cuaderno cuadriculado es ideal para tomar notas, dibujar o hacer cálculos. Su diseño práctico y versátil lo convierte en un compañero perfecto para estudiantes y profesionales por igual.",
+  "e2219428-27e2-4726-b0a1-11d8e9a59aa7": "El cuaderno de papelería es un elemento esencial para cualquier persona que desee mantener sus pensamientos y tareas organizadas. Con una cubierta atractiva y hojas de calidad, es perfecto para el uso diario.",
+  "951b4ec4-68cd-4532-9b67-132d53e024af": "Las revistas de actualidad ofrecen una mirada profunda a los temas más relevantes del momento. Desde cultura hasta política, estas publicaciones son una fuente de información valiosa y entretenida.",
+  "4bc82d26-3d36-4601-b6df-14b50c34d77b": "Los libros de psicología son una ventana al entendimiento del comportamiento humano. Este libro en particular ofrece teorías y prácticas que pueden ayudar a mejorar la vida personal y profesional.",
+  "4aa96200-ffe0-4743-a085-1cfdf0ad9684": "Historia del Arte es un libro que explora las obras maestras y los movimientos artísticos que han definido la cultura a lo largo de los siglos. Un recurso invaluable para estudiantes y amantes del arte.",
+  "3fa85f64-5717-4562-b3fc-2c963f66afa7": "Este cuaderno nuevo de Dora es perfecto para los más jóvenes. Con un diseño colorido y divertido, es ideal para fomentar la creatividad y la escritura en los niños.",
+  "21757193-3723-4ac5-af0b-3237955e6a7e": "El material de arte es fundamental para cualquier artista. Este conjunto incluye todo lo necesario para dar rienda suelta a la creatividad, desde lápices hasta pinceles.",
+  "bf38274e-98e2-4197-8b5b-38e91ddaab2e": "El cuaderno Messi Mbappé es un homenaje a dos de los mejores futbolistas del mundo. Con un diseño atractivo, es perfecto para los aficionados al fútbol que desean llevar un pedazo de su pasión a la escuela o al trabajo.",
+  "c7eb6def-1f29-457b-b7e2-3d1a84cb155f": "Este cuaderno rayado es ideal para tomar apuntes y hacer listas. Su diseño sencillo y funcional lo convierte en una opción popular para estudiantes y profesionales.",
+  "830a91f2-672a-45d4-8493-43d0b638ebbf": "Los lápices de colores son una herramienta esencial para los artistas de todas las edades. Este set incluye una variedad de colores vibrantes para dar vida a cualquier proyecto creativo.",
+  "830a91f3-672a-45d4-8493-43d0b638ebbf": "La cartulina de textura de puntitos es perfecta para manualidades y proyectos escolares. Su diseño único agrega un toque especial a cualquier creación.",
+  "830a91f3-672b-45d4-8493-43d0b638ebbf": "Esta cartulina de textura lisa es ideal para presentaciones y proyectos. Su superficie suave permite una fácil escritura y dibujo.",
+  "e3930419-42fe-4784-930a-4dad96023b71": "Los libros de ficción clásica son una parte fundamental de la literatura. Este libro ofrece historias atemporales que han cautivado a generaciones.",
+  "87deeb4e-be37-474b-9ff9-5736b9088afc": "Los libros de fantasía transportan a los lectores a mundos mágicos y aventuras épicas. Este libro en particular es un viaje inolvidable.",
+  "691087f2-ceb0-4c40-ba25-596bce345c5e": "Este cuaderno cuadriculado es perfecto para matemáticas y ciencias. Su diseño le ayuda a mantener todo organizado y claro.",
+  "944d066c-93de-4091-9e27-5b99370a530d": "Las hojas de papel A 4 son ideales para imprimir, escribir o dibujar. Su calidad asegura que tus trabajos se vean profesionales y bien presentados.",
+  "dc542f15-63f3-448d-bc28-5d50715665d5": "La cartulina de colores es perfecta para manualidades y proyectos creativos. Su variedad de tonos permite que cada creación sea única y colorida.",
+  "ab8e0ff4-b32e-4ac3-ac8c-682f2019115c": "El cuaderno de dibujo es esencial para cualquier artista. Con páginas en blanco de alta calidad, es ideal para bocetos y dibujos detallados.",
+  "93bc01fa-6eb8-4c6d-9f00-78e1ad1b9811": "Los libros de texto para secundaria son fundamentales para el aprendizaje. Este libro cubre temas esenciales que ayudan a los estudiantes a prepararse para sus exámenes.",
+  "cd24186d-93a3-4dc7-b78f-81c4b4c279b7": "El material de arte para niños es perfecto para fomentar la creatividad desde una edad temprana. Incluye una variedad de herramientas que inspiran a los pequeños artistas.",
+  "1f025397-d6f1-44a4-86ed-8bf59ae6e8e0": "La cartulina de puntitos es ideal para proyectos escolares y manualidades. Su diseño divertido añade un toque especial a cualquier trabajo.",
+  "971b708d-9598-473f-b01d-8c8cb304cab5": "Las revistas de viajes son una fuente de inspiración para los aventureros. Ofrecen guías y consejos sobre los mejores destinos alrededor del mundo.",
+  "b3b75331-d929-4c5b-83f7-8f8fa05ca33d": "La guía de viaje por Europa es un recurso invaluable para quienes desean explorar el viejo continente. Incluye itinerarios, recomendaciones y consejos prácticos.",
+  "793c4254-97b8-44e6-a5ad-92088f535402": "Este cuaderno rayado es perfecto para estudiantes que necesitan tomar notas. Su diseño práctico lo hace ideal para el uso diario.",
+  "76c1ced8-1d29-4a66-b05f-92f695a92907": "Los libros de psicología ofrecen una comprensión profunda del comportamiento humano. Este libro es una excelente introducción a la materia.",
+  "84ddd6a3-d4b8-4cd1-91bd-95ec00f8f27d": "El cuaderno Messi Mbappé es un regalo perfecto para los fanáticos del fútbol. Con imágenes de sus ídolos, es ideal para anotar tus pensamientos y sueños.",
+  "0a91affb-0d39-402f-a8e8-9bc3f460b9f5": "El calendario de pared 2024 es una forma práctica de mantenerte organizado. Con hermosas imágenes, cada mes es un recordatorio de la belleza del año.",
+  "7a8802fe-170f-42f4-87ea-a8fd2fb89f8f": "La textura lisa de la cartulina es perfecta para presentaciones y proyectos. Su superficie permite una escritura clara y precisa.",
+  "a45aefac-3009-400d-99c0-a9c99374dd96": "Los libros de no ficción sobre historia son esenciales para entender el pasado. Este libro ofrece una mirada profunda a eventos que han moldeado el mundo.",
+  "edcf0168-78bf-4618-b035-ac61c0be6886": "La guía de cocina es perfecta para quienes desean explorar nuevas recetas. Con instrucciones claras, es ideal tanto para principiantes como para chefs experimentados.",
+  "0250dff9-bda6-4bc9-8aac-afbf1fada5a2": "Los lápices de colores son una herramienta esencial para cualquier artista. Este set incluye una variedad de colores vibrantes para dar vida a tus creaciones.",
+  "abd25b5b-ff62-4483-9b28-bfb40a0fd957": "Los cómics de aventuras son una forma divertida de contar historias. Este libro ofrece emocionantes relatos que capturan la imaginación.",
+  "1cd4660a-f200-4e90-824c-c073b071cbe0": "El lápiz de colores set es perfecto para artistas de todas las edades. Con una variedad de tonos, es ideal para cualquier proyecto creativo.",
+  "62c13620-cbcb-49b6-b37b-c0a46bf30473 ": "Las recetas de cocina para todos son una excelente manera de explorar la gastronomía. Este libro ofrece una variedad de recetas que son fáciles de seguir y deliciosas.",
+  "065899ab-2613-4b2d-8b6c-a52ab472f853": "La literatura infantil con cuentos clásicos es una forma maravillosa de introducir a los niños en el mundo de la lectura. Estas historias atemporales fomentan la imaginación y el amor por los libros.",
+  "6ee5fbb6-1c79-4778-b2f0-dcbb884f0fd3": "Los accesorios de oficina, como clips, son esenciales para mantener la organización en el trabajo. Estos pequeños pero útiles elementos ayudan a mantener tus documentos en orden.",
+  "91a08654-8dce-4faf-b3df-d8f6cfb49901": "Los libros de ciencia son fundamentales para entender el mundo que nos rodea. Este libro en particular ofrece una visión fascinante de los conceptos científicos básicos.",
+  "c7b6aca2-88bd-4d10-b47e-e2d00f60a2f9": "Los lápices de colores son una herramienta esencial para cualquier artista. Este set incluye una variedad de colores vibrantes para dar vida a tus creaciones.",
+  "92dac35d-7987-41c9-9a69-e7e614ebcc3a": "Los juegos de mesa son una excelente manera de pasar tiempo con amigos y familiares. Este juego de aventura en el espacio promete horas de diversión y emoción.",
+  "41d256eb-189d-419f-bae5-ea3114df0814": "Los libros de autoayuda son una guía para el crecimiento personal. Este libro ofrece consejos prácticos para encontrar tu camino y alcanzar tus metas.",
+  "f12e99eb-5da0-40c0-bca5-1ab541bd3166": "Las novelas gráficas son una forma innovadora de contar historias. Este libro combina arte y narrativa de una manera que cautiva a los lectores.",
+  "4f120954-f306-45dd-bb43-5ef698b565d9": "Las mochilas para estudiantes son esenciales para llevar libros y materiales. Este modelo combina estilo y funcionalidad, ideal para el día a día escolar.",
+  "ed74bb9d-9ab1-4a9f-b9ba-f790dbc8b120": "Los libros de fantasía épica transportan a los lectores a mundos mágicos. Este libro ofrece una narrativa rica y personajes memorables que dejarán una impresión duradera.",
+  "9e432ff5-9053-4c02-b092-fb4840512663": "Los libros de ciencia para niños son una forma divertida de aprender sobre el mundo. Este libro está diseñado para despertar la curiosidad y el interés en la ciencia desde una edad temprana.",
+  "89687ffe-6ad6-4228-a308-fbfb8e3528a9": "El calendario 2024 es una herramienta útil para la planificación. Con hermosas imágenes, cada mes es un recordatorio de la belleza del año que viene.",
+  "f963c523-d1fa-4582-98ab-5b1bc2594637": "Los libros de negocios son esenciales para quienes desean emprender. Este libro ofrece estrategias y consejos prácticos para tener éxito en el mundo empresarial."
+};
 
   // Mapa de IDs de productos a sus respectivas URLs de imagen
   static final Map<String, String> imagenesProductos = {

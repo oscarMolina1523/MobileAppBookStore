@@ -42,6 +42,11 @@ class ProductoDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
+              'Descripcion del Producto: ${producto.detalles}',
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 8),
+            Text(
               'Precio: C\$${precio.toStringAsFixed(2)}', // Mostrar el precio dinámico
               style: const TextStyle(fontSize: 18),
             ),
