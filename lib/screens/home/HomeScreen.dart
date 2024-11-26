@@ -1,7 +1,9 @@
 import 'package:bookstore_mobile_app/models/Categorias.dart';
 import 'package:bookstore_mobile_app/screens/ProductosPorCategoriaScreen.dart';
+import 'package:bookstore_mobile_app/services/UserProvider.dart';
 import 'package:bookstore_mobile_app/services/apiService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   final ApiService apiService = ApiService(); // Instancia del servicio API
@@ -70,21 +72,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProfile = Provider.of<UserProfile>(context);
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/profile');
+            Navigator.pushNamed(context, '/profile'); // Navegar a la pantalla de perfil
           },
-          child: const Padding(
-            padding: EdgeInsets.all(4.0),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://moure.dev/avatar.jpg'),
+              backgroundImage: NetworkImage(userProfile.imageUrl), // Usar la URL de la imagen del perfil
             ),
           ),
         ),
-        title: const Text("Eduardo Lau"),
+        title: Text(userProfile.username),
         actions: [
           TextButton(
               onPressed: () {
@@ -100,6 +102,10 @@ class HomeScreen extends StatelessWidget {
                     PopupMenuItem(
                       value: '/cart',
                       child: Text('Mi carrito'),
+                    ),
+                    PopupMenuItem(
+                      value: '/wishList',
+                      child: Text('Lista deseos'),
                     ),
                     PopupMenuItem(
                       value: '/history',

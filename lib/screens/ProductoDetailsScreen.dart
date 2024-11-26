@@ -8,11 +8,13 @@ class ProductoDetailsScreen extends StatelessWidget {
   final double precio; // Precio recibido
 
   // Constructor para recibir el producto y el precio
-  const ProductoDetailsScreen(
-      {super.key, required this.producto, required this.precio});
+  const ProductoDetailsScreen({super.key, required this.producto, required this.precio});
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+    final isInWishlist = cartProvider.wishlistItems.contains(producto); // Verificar si el producto está en la lista de deseos
+
     return Scaffold(
       appBar: AppBar(
         title: Text(producto.descripcionProducto),
@@ -51,32 +53,70 @@ class ProductoDetailsScreen extends StatelessWidget {
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Agregar el producto al carrito con cantidad 1
-                final cartProvider =
-                    Provider.of<CartProvider>(context, listen: false);
-                cartProvider.addProduct(producto);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                        '${producto.descripcionProducto} agregado al carrito'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Agregar el producto al carrito con cantidad 1
+                    cartProvider.addProduct(producto);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('${producto.descripcionProducto} agregado al carrito'),
+                      ),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.green), // Color de fondo verde
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Color del texto blanco
+                    textStyle: MaterialStateProperty.all<TextStyle>(
+                      TextStyle(
+                        fontWeight: FontWeight.bold, // Texto en negrita
+                      ),
+                    ),
                   ),
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                    Colors.green), // Color de fondo verde
-                foregroundColor: MaterialStateProperty.all<Color>(
-                    Colors.white), // Color del texto blanco
-                textStyle: MaterialStateProperty.all<TextStyle>(
-                  TextStyle(
-                    fontWeight: FontWeight.bold, // Texto en negrita
+                  child: const Text('Agregar al carrito'),
+                ),
+                const SizedBox(width: 16), // Espacio entre los botones
+                ElevatedButton(
+                  onPressed: () {
+                    // Agregar o quitar de la lista de deseos
+                    if (isInWishlist) {
+                      cartProvider.removeFromWishlist(producto);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${producto.descripcionProducto} eliminado de la lista de deseos'),
+                        ),
+                      );
+                    } else {
+                      cartProvider.addToWishlist(producto);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${producto.descripcionProducto} agregado a la lista de deseos'),
+                        ),
+                      );
+                    }
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.red), // Color de fondo rojo
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Color del texto blanco
+                    textStyle: MaterialStateProperty.all<TextStyle>(
+                      TextStyle(
+                        fontWeight: FontWeight.bold, // Texto en negrita
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.favorite, color: Colors.white), // Ícono de corazón blanco
+                      const SizedBox(width: 8),
+                      Text(isInWishlist ? 'Eliminar' : 'Agregar'),
+                    ],
                   ),
                 ),
-              ),
-              child: const Text('Agregar al carrito'),
-            )
+              ],
+            ),
           ],
         ),
       ),

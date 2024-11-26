@@ -5,9 +5,11 @@ import 'package:http/http.dart' as http; // Importar la librería http
 
 class CartProvider with ChangeNotifier {
   Map<Productos, int> _cartItems = {};
+  List<Productos> _wishlistItems = [];
   List<Order> _orders = []; // Lista para almacenar los pedidos
 
   Map<Productos, int> get cartItems => _cartItems;
+  List<Productos> get wishlistItems => _wishlistItems; 
   List<Order> get orders => _orders;
 
   void addProduct(Productos producto) {
@@ -28,6 +30,18 @@ class CartProvider with ChangeNotifier {
       }
       notifyListeners();
     }
+  }
+
+  void addToWishlist(Productos producto) {
+    if (!_wishlistItems.contains(producto)) {
+      _wishlistItems.add(producto);
+      notifyListeners();
+    }
+  }
+
+  void removeFromWishlist(Productos producto) {
+    _wishlistItems.remove(producto);
+    notifyListeners();
   }
 
   double get totalAmount {
@@ -62,7 +76,7 @@ class CartProvider with ChangeNotifier {
 
     final body = jsonEncode({
       "NombreCliente": name,
-      "NombreUsuario": "admin", 
+      "NombreUsuario": "admin",
       "Total": order.totalAmount,
       "Detalles": detalles,
     });

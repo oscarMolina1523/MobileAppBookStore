@@ -1,89 +1,81 @@
-import 'package:bookstore_mobile_app/widgets/login/Button.dart';
+import 'package:bookstore_mobile_app/services/UserProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-     final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
+    final userProfile = Provider.of<UserProfile>(context);
+    final TextEditingController _usernameController = TextEditingController(text: userProfile.username);
+    final TextEditingController _imageUrlController = TextEditingController(text: userProfile.imageUrl);
+
     return Scaffold(
       appBar: AppBar(
-        title:const Text("Mi Perfil"),
-        actions: [
-          IconButton(
-            onPressed:(){
-              setState: ((){});
-            },
-            icon:const Icon(Icons.refresh_rounded)
-          ),
-        ]
+        title: const Text("Mi Perfil"),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-              color: Colors.green[900],
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.4, // Toma el 40% de la pantalla
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CircleAvatar(
-                    radius: 85.0,
-                    backgroundImage: NetworkImage(
-                        'https://moure.dev/avatar.jpg'),
-                  ),
-                ],
-              ),
-            ),
-            const Text("Desea actualizar sus datos?", style: TextStyle(fontSize: 20)),
-            SizedBox(height: 20,),
-            SizedBox(
-              width: 300, // Ajustamos el ancho del campo de texto
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  labelText: 'Ingrese nuevo email',
+      body: SingleChildScrollView( // Envolver el Column en un SingleChildScrollView
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                color: Colors.green[900],
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 85.0,
+                      backgroundImage: NetworkImage(userProfile.imageUrl),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            SizedBox(height: 20,),
-            SizedBox(
-              width: 300, // Ajustamos el ancho del campo de texto
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
+              const SizedBox(height: 20),
+              const Text("¿Desea actualizar sus datos?", style: TextStyle(fontSize: 20)),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: _usernameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    labelText: 'Ingrese nuevo nombre de usuario',
                   ),
-                  labelText: 'Ingrese nuevo nombre de usuario',
                 ),
               ),
-            ),
-            SizedBox(height: 20,),
-            SizedBox(
-              width: 300, // Ajustamos el ancho del campo de texto
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: _imageUrlController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    labelText: 'Ingrese nueva URL de imagen',
                   ),
-                  labelText: 'Ingrese nueva contraseña',
                 ),
               ),
-            ),
-            SizedBox(height: 20,),
-            SizedBox(
-              width: 300,
-              child: ButtonWidget(emailController: _emailController,
-                    passwordController: _passwordController,),
-            ),
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Actualizar el nombre de usuario y la URL de la imagen
+                  userProfile.updateUsername(_usernameController.text);
+                  userProfile.updateImageUrl(_imageUrlController.text);
+                },
+                child: const Text('Actualizar Perfil'),
+              ),
+              const SizedBox(height: 20), // Espacio adicional para evitar que el botón esté pegado al borde
+            ],
+          ),
         ),
-      )
+      ),
     );
   }
 }
